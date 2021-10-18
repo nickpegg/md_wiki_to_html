@@ -19,7 +19,7 @@ def config() -> Iterator[Config]:
         yield Config(
             source_dir_path=wiki_dir,
             output_dir_path=Path(tmp),
-            template_path=wiki_dir.joinpath(),
+            template_path=wiki_dir.joinpath("template.html"),
         )
 
 

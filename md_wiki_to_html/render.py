@@ -1,6 +1,8 @@
 from markdown import Markdown
 from pathlib import Path
 
+from jinja2 import Template
+
 from .config import Config
 from .dir_tree import DirTree, build_tree
 
@@ -21,6 +23,8 @@ def render(config: Config) -> None:
         ],
     )
 
+    template = Template(Path(config.template_path).read_text())
+
     q = [config.source_dir_path]
 
     while len(q) > 0:
@@ -31,18 +35,18 @@ def render(config: Config) -> None:
         output_dir = config.output_dir_path.joinpath(rel_dir)
         output_dir.mkdir(exist_ok=True)
 
-        print(f"Working on: {dir_}")
         for child in dir_.iterdir():
             if child.is_file():
                 print(child)
                 if child.name.endswith(".md"):
                     dest_file_name = child.with_suffix(".html").name
                     dest_file_path = output_dir.joinpath(dest_file_name)
-                    print(f"Dest: {dest_file_path}")
 
                     contents = md.convert(child.read_text())
-                    # TODO: Use the template
-                    dest_file_path.write_text(contents)
+                    # TODO: pass tree to template
+                    html = template.render(contents=contents)
+                    dest_file_path.write_text(html)
+                    print(f"Wrote {dest_file_path}")
             elif child.is_dir():
                 q.append(child)
 
