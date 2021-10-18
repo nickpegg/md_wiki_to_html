@@ -43,8 +43,8 @@ def render(config: Config) -> None:
                     dest_file_path = output_dir.joinpath(dest_file_name)
 
                     contents = md.convert(child.read_text())
-                    # TODO: pass tree to template
-                    html = template.render(contents=contents)
+                    # TODO: use the tree in the template
+                    html = template.render(contents=contents, tree=tree)
                     dest_file_path.write_text(html)
                     print(f"Wrote {dest_file_path}")
             elif child.is_dir():
