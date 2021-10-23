@@ -9,7 +9,7 @@ from tempfile import TemporaryDirectory
 import pytest
 
 from md_wiki_to_html.render import render
-from md_wiki_to_html.config import Config
+from md_wiki_to_html.config import Config, FLAVORS
 
 
 @pytest.fixture
@@ -20,6 +20,7 @@ def config() -> Iterator[Config]:
             source_dir_path=wiki_dir,
             output_dir_path=Path(tmp),
             template_path=wiki_dir.joinpath("template.html"),
+            flavor=FLAVORS["obsidian"],
         )
 
 

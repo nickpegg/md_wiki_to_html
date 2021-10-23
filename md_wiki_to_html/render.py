@@ -15,12 +15,7 @@ def render(config: Config) -> None:
 
     # Pass 2: render the files
     md = Markdown(
-        extensions=[
-            "nl2br",
-            "wikilinks",
-            "pymdownx.superfences",
-            "pymdownx.tasklist",
-        ],
+        extensions=config.flavor.md_extensions,
     )
 
     template = Template(Path(config.template_path).read_text())

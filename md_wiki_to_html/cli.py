@@ -1,7 +1,7 @@
 from argparse import ArgumentParser, Namespace, ArgumentDefaultsHelpFormatter
 from pathlib import Path
 
-from .config import Config
+from .config import Config, FLAVORS
 from .render import render
 
 
@@ -12,6 +12,7 @@ def main() -> None:
             source_dir_path=Path(args.source),
             output_dir_path=Path(args.output),
             template_path=Path(args.template),
+            flavor=FLAVORS[args.flavor],
         )
         try:
             render(config)
@@ -52,6 +53,12 @@ def parse_args() -> Namespace:
         "--template",
         default="_source/template.html",
         help="Path to the template to use for rendering HTML",
+    )
+    render_parser.add_argument(
+        "--flavor",
+        default="obsidian",
+        choices=FLAVORS.keys(),
+        help="Flavor of Markdown to use",
     )
 
     return arg_parser.parse_args()
