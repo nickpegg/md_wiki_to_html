@@ -24,6 +24,7 @@ class Flavor(object):
 # Various flavors, which define what markdown extensions should be used
 FLAVORS = {
     "obsidian": Flavor(
+        # https://help.obsidian.md/How+to/Format+your+notes
         name="obsidian",
         md_extensions=[
             "nl2br",

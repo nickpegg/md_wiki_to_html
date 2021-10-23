@@ -42,3 +42,8 @@ def test_render(config: Config) -> None:
         expected = config.output_dir_path.joinpath(Path(expected_file))
         assert expected.is_file()
         assert expected.read_text() != ""
+
+
+# TODO: add test which renders Obisidian-flavored markdown and makes sure HTML is
+# correct.
+# https://help.obsidian.md/How+to/Format+your+notes
