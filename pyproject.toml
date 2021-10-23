@@ -5,6 +5,9 @@ description = "Convert Markdown wiki pages to HTML"
 authors = ["Nick Pegg <nick@nickpegg.com>"]
 license = "MIT"
 
+[tool.poetry.scripts]
+md_wiki_to_html = 'md_wiki_to_html.cli:main'
+
 [tool.poetry.dependencies]
 python = ">=3.6.2"
 Markdown = "^3.3.4"

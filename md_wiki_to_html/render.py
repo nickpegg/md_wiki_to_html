@@ -37,7 +37,6 @@ def render(config: Config) -> None:
 
         for child in dir_.iterdir():
             if child.is_file():
-                print(child)
                 if child.name.endswith(".md"):
                     dest_file_name = child.with_suffix(".html").name
                     dest_file_path = output_dir.joinpath(dest_file_name)
