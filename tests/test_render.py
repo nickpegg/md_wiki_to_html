@@ -33,10 +33,10 @@ def test_render(config: Config) -> None:
 
     expected_files = [
         "index.html",
-        "Some page.html",
-        "Another top-level/Another.html",
-        "Some dir/Nested.html",
-        "Some dir/Another dir/Deeper.html",
+        "Some_page.html",
+        "Another_top-level/Another.html",
+        "Some_dir/Nested.html",
+        "Some_dir/Another_dir/Deeper.html",
     ]
     for expected_file in expected_files:
         expected = config.output_dir_path.joinpath(Path(expected_file))

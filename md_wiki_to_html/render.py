@@ -1,3 +1,5 @@
+import re
+
 from markdown import Markdown
 from pathlib import Path
 
@@ -26,7 +28,9 @@ def render(config: Config) -> None:
         dir_ = q.pop()
 
         # Make sure this dir exists in the output
-        rel_dir = dir_.relative_to(config.source_dir_path)
+        rel_dir = str(dir_.relative_to(config.source_dir_path))
+        rel_dir = re.sub("[ ]+", "_", rel_dir)
+
         output_dir = config.output_dir_path.joinpath(rel_dir)
         output_dir.mkdir(exist_ok=True)
 
@@ -34,6 +38,8 @@ def render(config: Config) -> None:
             if child.is_file():
                 if child.name.endswith(".md"):
                     dest_file_name = child.with_suffix(".html").name
+                    dest_file_name = re.sub("[ ]+", "_", dest_file_name)
+
                     dest_file_path = output_dir.joinpath(dest_file_name)
 
                     contents = md.convert(child.read_text())

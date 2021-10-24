@@ -5,7 +5,7 @@ from typing import List, Type, Union
 from markdown.extensions import Extension
 
 from .extensions.highlight import HighlightExtension
-
+from .extensions.wikilinks import WikiLinkExtension
 
 
 @dataclass
@@ -34,11 +34,11 @@ FLAVORS = {
         md_extensions=[
             "nl2br",
             "tables",
-            "wikilinks",
             "pymdownx.arithmatex",
             "pymdownx.superfences",
             "pymdownx.tasklist",
             HighlightExtension(),
+            WikiLinkExtension(base_url="", end_url=".html"),
         ],
     ),
 }
