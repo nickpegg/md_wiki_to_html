@@ -1,6 +1,11 @@
 from dataclasses import dataclass
 from pathlib import Path
-from typing import List, Type
+from typing import List, Type, Union
+
+from markdown.extensions import Extension
+
+from .extensions.highlight import HighlightExtension
+
 
 
 @dataclass
@@ -18,7 +23,7 @@ class Flavor(object):
     """
 
     name: str
-    md_extensions: List[str]
+    md_extensions: List[Union[str, Extension]]
 
 
 # Various flavors, which define what markdown extensions should be used
@@ -28,9 +33,12 @@ FLAVORS = {
         name="obsidian",
         md_extensions=[
             "nl2br",
+            "tables",
             "wikilinks",
+            "pymdownx.arithmatex",
             "pymdownx.superfences",
             "pymdownx.tasklist",
+            HighlightExtension(),
         ],
     ),
 }

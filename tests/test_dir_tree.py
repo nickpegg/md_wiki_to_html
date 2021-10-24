@@ -12,7 +12,7 @@ wiki_dir = Path(__file__).with_name("example_wiki")
 def test_build_tree() -> None:
     tree = build_tree(wiki_dir)
     assert tree.name == "example_wiki"
-    assert {"index", "Some page"} == set(tree.pages)
+    assert {"index", "Some page", "obsidian"} == set(tree.pages)
     assert {"Another top-level", "Some dir"} == {c.name for c in tree.children}
 
     for child in tree.children:
