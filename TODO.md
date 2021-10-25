@@ -1,7 +1,7 @@
 # TODO
 
 - [x] Basic test to make sure rendering doesn't throw an exception with the test wiki
-- [ ] Page title in `<title>` - take from filename
+- [x] Page title in `<title>` - take from filename
 - [ ] Fully-featured default template with CSS and JS
 - [ ] `init` command to drop default template/CSS/JS
 

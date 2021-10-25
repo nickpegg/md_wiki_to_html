@@ -37,14 +37,18 @@ def render(config: Config) -> None:
         for child in dir_.iterdir():
             if child.is_file():
                 if child.name.endswith(".md"):
+                    page_name = child.stem
+
                     dest_file_name = child.with_suffix(".html").name
                     dest_file_name = re.sub("[ ]+", "_", dest_file_name)
 
                     dest_file_path = output_dir.joinpath(dest_file_name)
 
-                    contents = md.convert(child.read_text())
+                    content = md.convert(child.read_text())
                     # TODO: use the tree in the template
-                    html = template.render(contents=contents, tree=tree)
+                    html = template.render(
+                        content=content, title=page_name, tree=tree
+                    )
                     dest_file_path.write_text(html)
                     print(f"Wrote {dest_file_path}")
             elif child.is_dir():
