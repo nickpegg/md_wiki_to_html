@@ -1,3 +1,5 @@
+import sys
+
 from argparse import ArgumentParser, Namespace, ArgumentDefaultsHelpFormatter
 from pathlib import Path
 
@@ -22,7 +24,7 @@ def main() -> None:
             else:
                 print(e)
     elif args.action == "init":
-        pass
+        print("Would init")
 
 
 def parse_args() -> Namespace:
@@ -61,7 +63,12 @@ def parse_args() -> Namespace:
         help="Flavor of Markdown to use",
     )
 
-    return arg_parser.parse_args()
+    parsed = arg_parser.parse_args()
+    if not hasattr(parsed, "action"):
+        arg_parser.print_help()
+        sys.exit(1)
+
+    return parsed
 
 
 if __name__ == "__main__":
