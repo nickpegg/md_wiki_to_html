@@ -10,16 +10,16 @@ md_wiki_to_html = 'md_wiki_to_html.cli:main'
 
 [tool.poetry.dependencies]
 python = ">=3.6.2"
-Markdown = "^3.3.4"
-Pygments = "^2.10.0"
-pymdown-extensions = "^9.0"
-Jinja2 = "^3.0.2"
+Markdown = ">=3.3.4"
+Pygments = ">+2.10.0"
+pymdown-extensions = ">=9.0"
+Jinja2 = ">=3.0.2"
 
 [tool.poetry.dev-dependencies]
-black = "^21.9b0"
-mypy = "^0.910"
-pytest = "^6.2.5"
-types-Markdown = "^3.3.6"
+black = "*"
+mypy = "*"
+pytest = "*"
+types-Markdown = "*"
 
 [build-system]
 requires = ["poetry-core>=1.0.0"]
