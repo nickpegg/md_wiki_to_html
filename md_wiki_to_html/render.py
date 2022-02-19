@@ -46,9 +46,7 @@ def render(config: Config) -> None:
 
                     content = md.convert(child.read_text())
                     # TODO: use the tree in the template
-                    html = template.render(
-                        content=content, title=page_name, tree=tree
-                    )
+                    html = template.render(content=content, title=page_name, tree=tree)
                     dest_file_path.write_text(html)
                     print(f"Wrote {dest_file_path}")
             elif child.is_dir():

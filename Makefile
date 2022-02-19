@@ -1,4 +1,4 @@
-all: test
+all: fmt test
 
 init:
 	poetry install
