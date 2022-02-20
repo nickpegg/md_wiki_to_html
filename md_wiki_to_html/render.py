@@ -1,4 +1,5 @@
 import re
+import shutil
 
 from markdown import Markdown
 from pathlib import Path
@@ -36,7 +37,12 @@ def render(config: Config) -> None:
 
         for child in dir_.iterdir():
             if child.is_file():
-                if child.name.endswith(".md"):
+                if not child.name.endswith(".md"):
+                    # Copy the file blindly
+                    dest_file_path = output_dir.joinpath(child.name)
+                    shutil.copy(str(child), str(dest_file_path))
+                else:
+                    # Render the markdown
                     page_name = child.stem
 
                     dest_file_name = child.with_suffix(".html").name

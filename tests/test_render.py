@@ -34,6 +34,7 @@ def test_render(config: Config) -> None:
     expected_files = [
         "index.html",
         "Some_page.html",
+        "text_file.txt",
         "Another_top-level/Another.html",
         "Some_dir/Nested.html",
         "Some_dir/Another_dir/Deeper.html",
