@@ -35,3 +35,17 @@ def test_sort() -> None:
     tree.sort()
     assert tree.pages == sorted(tree.pages)
     assert [c.name for c in tree.children] == sorted([c.name for c in tree.children])
+
+
+def test_has_pages() -> None:
+    subtree1 = DirTree(name="some dir", pages=[], children=[])
+    subtree2 = DirTree(name="dir1", pages=[], children=[])
+    tree = DirTree(
+        name="root",
+        pages=["foo", "bar", "jawn"],
+        children=[subtree1, subtree2],
+    )
+
+    assert tree.has_pages()
+    assert not subtree1.has_pages()
+    assert not subtree2.has_pages()

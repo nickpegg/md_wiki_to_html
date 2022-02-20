@@ -36,12 +36,15 @@ def render(config: Config) -> None:
         output_dir.mkdir(exist_ok=True)
 
         for child in dir_.iterdir():
-            if child.is_file():
-                if not child.name.endswith(".md"):
-                    # Copy the file blindly
-                    dest_file_path = output_dir.joinpath(child.name)
-                    shutil.copy(str(child), str(dest_file_path))
-                else:
+            if child.name.startswith("."):
+                continue
+            elif child.is_dir():
+                if child.name == output_dir.name:
+                    # skip over the output dir if it already exists
+                    continue
+                q.append(child)
+            elif child.is_file():
+                if child.name.endswith(".md"):
                     # Render the markdown
                     page_name = child.stem
 
@@ -51,14 +54,15 @@ def render(config: Config) -> None:
                     dest_file_path = output_dir.joinpath(dest_file_name)
 
                     content = md.convert(child.read_text())
-                    # TODO: use the tree in the template
                     html = template.render(content=content, title=page_name, tree=tree)
                     dest_file_path.write_text(html)
                     print(f"Wrote {dest_file_path}")
-            elif child.is_dir():
-                if child.name == output_dir.name:
-                    # skip over the output dir if it already exists
-                    continue
-                q.append(child)
 
-    # TODO: copy over static files (CSS, JS, etc.)
+    for static_dir in (".static", "img"):
+        static_path = Path(config.source_dir_path, static_dir)
+        if static_path.is_dir():
+            shutil.copytree(
+                static_path,
+                Path(config.output_dir_path, static_dir.replace(".", "")),
+                dirs_exist_ok=True,
+            )
