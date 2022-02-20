@@ -50,6 +50,9 @@ def render(config: Config) -> None:
                     dest_file_path.write_text(html)
                     print(f"Wrote {dest_file_path}")
             elif child.is_dir():
+                if child.name == output_dir.name:
+                    # skip over the output dir if it already exists
+                    continue
                 q.append(child)
 
     # TODO: copy over static files (CSS, JS, etc.)
