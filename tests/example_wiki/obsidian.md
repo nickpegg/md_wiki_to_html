@@ -30,6 +30,20 @@ and an ordered list:
     1. three a
 1. four
 
+Here are differe kinds of lists one right after another:
+
+- some
+- unordered
+- list
+
+1. numbered
+2. list
+3. whee
+
+- [ ] check
+- [ ] boxes
+
+
 And here's a block quote:
 
 > I like turtles.

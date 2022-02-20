@@ -10,6 +10,9 @@ from .render import render
 def main() -> None:
     args = parse_args()
     if args.action == "render":
+        if not args.template:
+            args.template = str(Path(args.source, "template.html"))
+
         config = Config(
             source_dir_path=Path(args.source),
             output_dir_path=Path(args.output),
@@ -53,7 +56,7 @@ def parse_args() -> Namespace:
     )
     render_parser.add_argument(
         "--template",
-        default="_source/template.html",
+        default="",
         help="Path to the template to use for rendering HTML",
     )
     render_parser.add_argument(

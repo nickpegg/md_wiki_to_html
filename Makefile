@@ -18,5 +18,4 @@ test_build:
 	poetry run md_wiki_to_html \
 		--verbose \
 		render \
-		--source tests/example_wiki \
-		--template tests/example_wiki/template.html
+		--source tests/example_wiki

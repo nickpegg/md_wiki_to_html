@@ -37,6 +37,7 @@ FLAVORS = {
             "pymdownx.arithmatex",
             "pymdownx.superfences",
             "pymdownx.tasklist",
+            "sane_lists",
             HighlightExtension(),
             WikiLinkExtension(base_url="", end_url=".html"),
         ],
