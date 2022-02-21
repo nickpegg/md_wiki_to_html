@@ -43,23 +43,25 @@ class DirTree(object):
         """
         Because doing this recursion in Jinja is just too hard
         """
-        acc = "<ul>"
+        acc = "<ul>\n"
         page_names = set(self.pages)
         children = {c.name: c for c in self.children}
 
         for name in sorted(set(self.pages + list(children.keys()))):
             if name in page_names:
-                acc += "<li>"
+                acc += "<li>\n"
                 p = Path(dir_path, name)
-                acc += f'<a href="{p}.html">{name}</a>'
-                acc += "</li>"
-            elif name in children and children[name].has_pages():
-                acc += "<li>"
+                acc += f"<a href=\"{p}.html\">{name}</a>\n"
+                acc += "</li>\n"
+            elif name in children:
+                acc += "<li>\n"
                 acc += name
-                acc += "</li>"
+                acc += "</li>\n"
+
+            if name in children and children[name].has_pages():
                 acc += children[name].to_html_navtree(str(Path(dir_path, name)))
 
-        acc += "</ul>"
+        acc += "</ul>\n"
         return acc
 
 
