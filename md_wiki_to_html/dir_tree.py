@@ -52,15 +52,13 @@ class DirTree(object):
                 acc += "<li>"
                 p = Path(dir_path, name)
                 acc += f'<a href="{p}.html">{name}</a>'
-                acc += "</li>"
+            else:
+                acc += "<li>"
+                acc += name
+            acc += "</li>"
+
             if name in children and children[name].has_pages():
-                if name not in page_names:
-                    acc += "<li>"
-                    acc += name
-                acc += "<ul>"
                 acc += children[name].to_html_navtree(str(Path(dir_path, name)))
-                acc += "</ul>"
-                acc += "</li>"
 
         acc += "</ul>"
         return acc
