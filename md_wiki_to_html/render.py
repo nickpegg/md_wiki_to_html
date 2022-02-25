@@ -47,6 +47,7 @@ def render(config: Config) -> None:
                 if child.name.endswith(".md"):
                     # Render the markdown
                     page_name = child.stem
+                    page_dirs = child.parent.parts
 
                     dest_file_name = child.with_suffix(".html").name
                     dest_file_name = re.sub("[ ]+", "_", dest_file_name)
@@ -54,7 +55,9 @@ def render(config: Config) -> None:
                     dest_file_path = output_dir.joinpath(dest_file_name)
 
                     content = md.convert(child.read_text())
-                    html = template.render(content=content, title=page_name, tree=tree)
+                    html = template.render(
+                        content=content, page_dirs=page_dirs, title=page_name, tree=tree
+                    )
                     dest_file_path.write_text(html)
                     print(f"Wrote {dest_file_path}")
 

@@ -51,7 +51,7 @@ class DirTree(object):
             if name in page_names:
                 acc += "<li>\n"
                 p = Path(dir_path, name)
-                acc += f"<a href=\"{p}.html\">{name}</a>\n"
+                acc += f'<a href="{p}.html">{name}</a>\n'
                 acc += "</li>\n"
 
             if name in children and children[name].has_pages():
