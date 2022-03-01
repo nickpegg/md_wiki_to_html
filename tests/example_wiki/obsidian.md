@@ -19,7 +19,7 @@ Here's an unordered list:
 
 - foo
 - bar
-  - baz
+      - baz
 - cactus
 
 and an ordered list:
@@ -42,6 +42,9 @@ Here are differe kinds of lists one right after another:
 
 - [ ] check
 - [ ] boxes
+	- [ ] this one's nested
+	- [x] this one's checked
+- [ ] back to top-level
 
 
 And here's a block quote:
