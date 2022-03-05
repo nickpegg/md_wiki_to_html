@@ -1,6 +1,10 @@
+import re
+
 from dataclasses import dataclass
 from typing import List
 from pathlib import Path
+
+from .common import FILENAME_BAD_CHARS_RE
 
 
 @dataclass
@@ -50,7 +54,7 @@ class DirTree(object):
         for name in sorted(set(self.pages + list(children.keys()))):
             if name in page_names:
                 acc += "<li>\n"
-                p = Path(dir_path, name)
+                p = re.sub(FILENAME_BAD_CHARS_RE, "_", str(Path(dir_path, name)))
                 acc += f'<a href="{p}.html">{name}</a>\n'
                 acc += "</li>\n"
 

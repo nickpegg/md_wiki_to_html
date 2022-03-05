@@ -6,6 +6,7 @@ from pathlib import Path
 
 from jinja2 import Template
 
+from .common import FILENAME_BAD_CHARS_RE
 from .config import Config
 from .dir_tree import DirTree, build_tree
 
@@ -30,7 +31,7 @@ def render(config: Config) -> None:
 
         # Make sure this dir exists in the output
         rel_dir = str(dir_.relative_to(config.source_dir_path))
-        rel_dir = re.sub("[ ]+", "_", rel_dir)
+        rel_dir = re.sub(FILENAME_BAD_CHARS_RE, "_", rel_dir)
 
         output_dir = config.output_dir_path.joinpath(rel_dir)
         output_dir.mkdir(exist_ok=True)
