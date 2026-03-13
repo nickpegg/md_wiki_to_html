@@ -6,7 +6,6 @@ from markdown.extensions.wikilinks import (
     WikiLinksInlineProcessor,
 )
 
-
 WIKILINK_RE = r"\[\[([\w0-9_ -\/]+)\]\]"
 
 
