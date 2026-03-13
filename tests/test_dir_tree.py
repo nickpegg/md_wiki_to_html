@@ -5,7 +5,6 @@ Tests for dir_tree module
 from pathlib import Path
 from md_wiki_to_html.dir_tree import build_tree, DirTree
 
-
 wiki_dir = Path(__file__).with_name("example_wiki")
 
 
